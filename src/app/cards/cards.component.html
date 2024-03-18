@@ -1,0 +1,30 @@
+<main>
+    <div class="d-flex align-items-center">
+        <div class="flex-grow-1">
+            <div class="col-12 col-md-8">
+                <h1 class="page-title">
+                    Business Card Page
+                </h1>
+                <p class="page-description">
+                    You can manage your business card in this page
+                </p>
+                <app-card-search></app-card-search>
+                <button (click)="openAddCardModal()" style="margin-left: 16px;" mat-stroked-button color="primary">New Business Card</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="cards">
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3"  *ngIf="!cardService.cards">
+                <span>loading</span>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3"  *ngIf="cardService.cards?.length === 0">
+                <span>you haven't added business card yet <a class="text-primary" (click)="openAddCardModal">click here</a> to add the first business card</span>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3"  *ngFor="let card of cardService.filteredCards">
+                <app-card-item [cardItem]="card"></app-card-item>
+            </div>
+        </div>
+    </div>
+</main>
